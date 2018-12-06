@@ -5,8 +5,8 @@
     </div>
     <div class="header-input">
       <span class="iconfont">&#xe615;</span>
-      输入城市/景点/游玩主题</div>
-    <div class="header-right">城市
+      <input class="search" type="text" placeholder="输入城市/景点/游玩主题"></div>
+    <div class="header-right">{{this.city}}
       <span class="iconfont choose">&#xe627;</span>
     </div>
   </div>
@@ -14,7 +14,10 @@
 
 <script>
 export default {
-  name: "Header"
+  name: "Header",
+  props: {
+    city: String
+  }
 };
 </script>
 
@@ -40,6 +43,9 @@ export default {
       background-color: white
       border-radius: .1rem
       color: #ccc
+      .search
+        font-size: .24rem
+        margin: 0 0 .15rem .1rem
     .header-right
       width: 1.24rem
       float: right

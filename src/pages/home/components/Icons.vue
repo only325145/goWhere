@@ -17,49 +17,11 @@
 <script>
 export default {
   name: "HomeIcons",
-  data () {
+  props: {
+    list: Array
+  },
+  data() {
     return {
-      iconList: [{
-        id: "0001",
-        imgUrl: "http://img1.qunarzz.com/piao/fusion/1803/95/f3dd6c383aeb3b02.png",
-        text: "景点门票景点门票景点门票"
-        },{
-        id: "0002",
-        imgUrl: "http://img1.qunarzz.com/piao/fusion/1803/95/8246f27355943202.png",
-        text: "游乐场"
-        },{
-        id: "0003",
-        imgUrl: "http://img1.qunarzz.com/piao/fusion/1804/ff/fdf170ee89594b02.png",
-        text: "重庆必游" 
-        },{
-        id: "0004",
-        imgUrl: "https://img1.qunarzz.com/piao/fusion/1811/1d/c46140e32fffa502.png",
-        text: "去哪儿甄选" 
-        },{
-        id: "0005",
-        imgUrl: "http://img1.qunarzz.com/piao/fusion/1804/5a/13ceb38dcf262f02.png",
-        text: "一日游" 
-        },{
-        id: "0006",
-        imgUrl: "http://img1.qunarzz.com/piao/fusion/1803/89/55083b0f1951f302.png",
-        text: "两江夜游"
-        },{
-        id: "0007",
-        imgUrl: "http://img1.qunarzz.com/piao/fusion/1803/96/c70f1e85ae4a4f02.png",
-        text: "神秘武隆" 
-        },{
-        id: "0008",
-        imgUrl: "http://img1.qunarzz.com/piao/fusion/1803/ab/6f7d6e44963c9302.png",
-        text: "泡温泉" 
-        },{
-        id: "0009",
-        imgUrl: "http://img1.qunarzz.com/piao/fusion/1803/47/c2b659e048b11602.png",
-        text: "野生动物园" 
-        },{
-        id: "0010",
-        imgUrl: "http://img1.qunarzz.com/piao/fusion/1803/80/416c6ab3368d1f02.png",
-        text: "全部玩乐" 
-        },],
       swiperOption: {
         pagination: ".swiper-pagination"
       }
@@ -68,7 +30,7 @@ export default {
   computed: {
     pages() {
       const pages = [];
-      this.iconList.forEach((value, index) => {
+      this.list.forEach((value, index) => {
         const page = Math.floor(index / 8);
         if (!pages[page]) {
           pages[page] = [];

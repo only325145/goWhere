@@ -2,7 +2,7 @@
   <div class="recommend">
     <div class="title">热门推荐</div>
     <ul>
-      <li class="content border-bottom" v-for="(value) in recommendList" :key="value.id">
+      <li class="content border-bottom" v-for="(value) in list" :key="value.id">
         <img class="contentImg" :src="value.imgUrl"/>
         <div class="contentText">
           <p class="textTitle">{{value.textTitle}}</p>
@@ -16,42 +16,10 @@
 <script>
 export default {
   name: "Recommend",
-  data () {
-    return {
-      recommendList: [{
-        id: "0001",
-        imgUrl: "http://img1.qunarzz.com/sight/p0/1809/c9/c9ab2722d2990967a3.img.jpg_200x200_b4832539.jpg",
-        textTitle: "重庆洪崖洞",
-        text: "重庆网红打卡必经之处，现实版的千与千寻重庆网红打卡必经之处，现实版的千与千寻"
-      },
-      {
-        id: "0002",
-        imgUrl: "http://img1.qunarzz.com/sight/p0/1505/be/be4802e10f3b3107.water.jpg_200x200_0e98aabe.jpg",
-        textTitle: "重庆洪崖洞",
-        text: "重庆网红打卡必经之处，现实版的千与千寻重庆网红打卡必经之处，现实版的千与千寻"
-      },
-      {
-        id: "0003",
-        imgUrl: "http://img1.qunarzz.com/sight/p0/201401/29/8e60d7bb448bc8d4652efb382324076f.jpg_200x200_45d36d9b.jpg",
-        textTitle: "重庆洪崖洞",
-        text: "重庆网红打卡必经之处，现实版的千与千寻重庆网红打卡必经之处，现实版的千与千寻"
-      },
-      {
-        id: "0004",
-        imgUrl: "http://img1.qunarzz.com/sight/p0/201311/27/5dad2ac65813222058b7596ed26a2255.jpg_200x200_8f9bed8c.jpg",
-        textTitle: "重庆洪崖洞",
-        text: "重庆网红打卡必经之处，现实版的千与千寻重庆网红打卡必经之处，现实版的千与千寻"
-      },
-      {
-        id: "0005",
-        imgUrl: "http://img1.qunarzz.com/sight/p0/1709/e4/e4b97c2fbb4e696a3.img.png_200x200_839ce24d.png",
-        textTitle: "重庆洪崖洞",
-        text: "重庆网红打卡必经之处，现实版的千与千寻重庆网红打卡必经之处，现实版的千与千寻"
-      },
-      ]
-    }
+  props: {
+    list: Array
   }
-}
+};
 </script>
 
 <style lang="stylus" scoped>

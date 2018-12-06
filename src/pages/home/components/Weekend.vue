@@ -2,7 +2,7 @@
   <div class="weekend">
     <div class="title">周末去哪儿</div>
     <ul>
-      <li class="content" v-for="(value) in WeekendList" :key="value.id">
+      <li class="content" v-for="(value) in list" :key="value.id">
         <div class="imgbox">
           <img class="contentImg" :src="value.imgUrl"/>
         </div>
@@ -17,27 +17,8 @@
 <script>
 export default {
   name: "Weekend",
-  data () {
-    return {
-      WeekendList: [{
-        id: "0001",
-        imgUrl: "http://img1.qunarzz.com/sight/source/1509/d5/82498669f3a48d.jpg_r_640x214_21f7a4ff.jpg",
-        textTitle: "重庆洪崖洞",
-        text: "重庆网红打卡必经之处，现实版的千与千寻重庆网红打卡必经之处，现实版的千与千寻"
-      },
-      {
-        id: "0002",
-        imgUrl: "http://img1.qunarzz.com/sight/source/1505/48/f117e9b3bf582a.jpg_r_640x214_b8145711.jpg",
-        textTitle: "重庆洪崖洞",
-        text: "重庆网红打卡必经之处，现实版的千与千寻重庆网红打卡必经之处，现实版的千与千寻"
-      },
-      {
-        id: "0003",
-        imgUrl: "http://img1.qunarzz.com/sight/source/1505/5f/276ed6784d25ee.jpg_r_640x214_2193082e.jpg",
-        textTitle: "重庆洪崖洞",
-        text: "重庆网红打卡必经之处，现实版的千与千寻重庆网红打卡必经之处，现实版的千与千寻"
-      },]
-    }
+  props: {
+    list: Array
   }
 }
 </script>
