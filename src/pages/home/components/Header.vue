@@ -1,14 +1,17 @@
 <template>
   <div class="header">
     <div class="header-left">
-        <div class="iconfont back">&#xe749;</div>
+      <div class="iconfont back">&#xe749;</div>
     </div>
     <div class="header-input">
       <span class="iconfont">&#xe615;</span>
-      <input class="search" type="text" placeholder="输入城市/景点/游玩主题"></div>
-    <div class="header-right">{{this.city}}
-      <span class="iconfont choose">&#xe627;</span>
+      <input class="search" type="text" placeholder="输入城市/景点/游玩主题">
     </div>
+    <router-link to="/city" tag="div">
+      <div class="header-right">{{this.city}}
+        <span class="iconfont choose">&#xe627;</span>
+      </div>
+    </router-link>
   </div>
 </template>
 
@@ -25,7 +28,7 @@ export default {
 @import "../../../assets/styles/varibles.styl"   //样式里引入样式文件使用@符号
   .header
     display: flex 
-    line-height: .86rem
+    line-height: $headerHeight
     background-color: $bkcolor
     color: white
     .header-left
@@ -50,6 +53,7 @@ export default {
       width: 1.24rem
       float: right
       text-align: center
+      color: #fff
       .choose
         font-size: .25rem
 </style>

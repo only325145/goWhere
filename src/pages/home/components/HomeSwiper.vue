@@ -28,7 +28,8 @@ export default {
   },
   computed: {
     swiperstart() {
-      return this.list.length
+      return this.list.length   //确保list里有数据才开始载入轮播。
+      //因为当swiper载入时ajax数据还没有导入，此时list为空[]，当识别到ajax数据时再重新渲染，使得数据一开始定位到最后一项,确保有数据再载入swiper组件就不会出现该问题了
     }
   }
 };
