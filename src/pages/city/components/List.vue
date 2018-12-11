@@ -1,62 +1,54 @@
 <template>
-  <div class="list">
-    <div class="area " >
-      <div class="title border-topbottom">您的位置</div>
-      <div class="buttonList">
-        <div class="button">
-          <div class="buttonText">重庆</div>
+  <div class="list" ref="wraper">
+    <div>
+      <div class="area" >
+        <div class="title border-topbottom">您的位置</div>
+        <div class="buttonList">
+          <div class="button">
+            <div class="buttonText">重庆</div>
+          </div>
         </div>
       </div>
-    </div>
-    <div class="area ">
-      <div class="title border-topbottom">热门城市</div>
-      <div class="buttonList">
-        <div class="button">
-          <div class="buttonText">北京</div>
-        </div>
-        <div class="button">
-          <div class="buttonText">上海</div>
-        </div>
-        <div class="button">
-          <div class="buttonText">杭州</div>
-        </div>
-        <div class="button">
-          <div class="buttonText">成都</div>
-        </div>
-        <div class="button">
-          <div class="buttonText">西安</div>
-        </div>
-        <div class="button">
-          <div class="buttonText">重庆</div>
+      <div class="area">
+        <div class="title border-topbottom">热门城市</div>
+        <div class="buttonList">
+          <div class="button" v-for="value in hot" :key="value.id">  <!-- 循环数组时的key值是默认的0、1、2...下标 -->
+            <div class="buttonText">{{value.name}}</div>
+          </div>
         </div>
       </div>
-    </div>
-    <div class="area">
-      <div class="title border-topbottom">A</div>
+      <div class="area" v-for="(value, key) in cities" :key="key" :ref="key">  <!--  循环Object时value得到的是对象的内容，cities里面"A"是对象里的key值，"A"后的数据才是循环cities得到的内容 -->
+        <div class="title border-topbottom">{{key}}</div>
         <ul class="itemList">
-          <li class="item">阿克苏</li>
-          <li class="item">阿拉善</li>
-          <li class="item">阿拉善</li>
-          <li class="item">阿克苏</li>
-          <li class="item">阿克苏</li>
-          <li class="item">阿克苏</li>
-          <li class="item">阿拉善</li>
-          <li class="item">阿拉善</li>
-          <li class="item">阿克苏</li>
-          <li class="item">阿克苏</li>
-          <li class="item">阿克苏</li>
-          <li class="item">阿拉善</li>
-          <li class="item">阿拉善</li>
-          <li class="item">阿克苏</li>
-          <li class="item">阿克苏</li>
+          <li class="item border-bottom" v-for="value1 in value" :key="value1.id">{{value1.name}}</li>
         </ul>
+      </div>
     </div>
   </div>
 </template>
 
 <script>
+import BScroll from "better-scroll"
   export default {
-      name: "citylist"
+      name: "citylist",
+      props: {
+        cities: Object,
+        hot: Array,
+        letter: String
+      },
+      mounted() {
+        this.scroll = new BScroll(this.$refs.wraper)
+      },
+      watch: {
+        letter() {
+          if (this.letter) {
+            const element = this.$refs[this.letter][0];   //this.$refs是一个对象，因为ref绑定的是循环的数据，所以this.$refs对象里面有全部的数据
+                                                          //A:"[xxx]",B:"[xxx]",C:"[xxx]"...    this.$refs[this.letter][0]获取的是数组里面的DOM元素
+
+            this.scroll.scrollToElement(element)     //better-scroll参数需要的是DOM元素
+          }
+        }
+      }
   }
 </script>
 
@@ -65,16 +57,19 @@
   @import "../../../assets/styles/mixins.styl"
   .border-topbottom
     &:before
-      border-color: #777
+      border-color: #ccc
     &:after
-      border-color:#777
+      border-color:#ccc
+  .border-bottom
+    &:before
+      border-color: #ccc
   .list
     overflow: hidden
     position: absolute
     top: 1.78rem
     left: 0
     right: 0
-    bottom: 0
+    bottom: 0    //此部分设定让元素自动撑开到页面区域大小，不用单独给定位元素设定宽高
     font-size: .24rem
     .area
       line-height: .44rem
