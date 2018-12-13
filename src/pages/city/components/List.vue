@@ -5,14 +5,15 @@
         <div class="title border-topbottom">您的位置</div>
         <div class="buttonList">
           <div class="button">
-            <div class="buttonText">重庆</div>
+            <!-- <div class="buttonText">{{this.$store.state.city}}</div> 直接调用state里的数据-->
+            <div class="buttonText">{{this.city}}</div>  <!-- 使用mapstate映射数据时这样写 -->
           </div>
         </div>
       </div>
       <div class="area">
         <div class="title border-topbottom">热门城市</div>
         <div class="buttonList">
-          <div class="button" v-for="value in hot" :key="value.id">  <!-- 循环数组时的key值是默认的0、1、2...下标 -->
+          <div class="button" v-for="value in hot" :key="value.id" @click="cityChange(value.name)">  <!-- 循环数组时的key值是默认的0、1、2...下标 -->
             <div class="buttonText">{{value.name}}</div>
           </div>
         </div>
@@ -20,7 +21,7 @@
       <div class="area" v-for="(value, key) in cities" :key="key" :ref="key">  <!--  循环Object时value得到的是对象的内容，cities里面"A"是对象里的key值，"A"后的数据才是循环cities得到的内容 -->
         <div class="title border-topbottom">{{key}}</div>
         <ul class="itemList">
-          <li class="item border-bottom" v-for="value1 in value" :key="value1.id">{{value1.name}}</li>
+          <li class="item border-bottom" v-for="value1 in value" :key="value1.id" @click="cityChange(value1.name)">{{value1.name}}</li>
         </ul>
       </div>
     </div>
@@ -28,7 +29,8 @@
 </template>
 
 <script>
-import BScroll from "better-scroll"
+import BScroll from "better-scroll";
+import { mapState } from "vuex"
   export default {
       name: "citylist",
       props: {
@@ -36,8 +38,17 @@ import BScroll from "better-scroll"
         hot: Array,
         letter: String
       },
+      methods: {
+        cityChange(city) {
+          this.$store.dispatch("changeCity", city);
+          this.$router.push("/")
+        }
+      },
+      computed: {
+        ...mapState(["city"])   //mapState里是一个数组，将state里的city数据映射到该组件计算属性中名为city的数据
+      },
       mounted() {
-        this.scroll = new BScroll(this.$refs.wraper)
+        this.scroll = new BScroll(this.$refs.wraper, {click: true})    //better-scroll和原生click事件冲突，要在初始化时设置click:true才能在better-scroll区域实现点击事件
       },
       watch: {
         letter() {

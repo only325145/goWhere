@@ -1,6 +1,6 @@
 <template>
   <div id="home">
-    <Header :city="city"></Header>
+    <Header></Header>
     <HomeSwiper :list="swiperList"></HomeSwiper>
     <Icons :list="iconList"></Icons>
     <Recommend :list="recommendList"></Recommend>
@@ -19,7 +19,7 @@ export default {
   components: { Header, HomeSwiper, Icons, Recommend, Weekend },
   data() {
     return {
-      city: "",
+      //city: "",
       swiperList: [],
       iconList: [],
       recommendList: [],
@@ -33,7 +33,7 @@ export default {
     getHomeInforSucc(res) {
       res = res.data;
       if (res.ret && res.data) {
-        this.city = res.data.city;
+        //this.city = res.data.city;
         this.swiperList = res.data.swiperList;
         this.iconList = res.data.iconList;
         this.recommendList = res.data.recommendList;

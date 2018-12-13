@@ -5,7 +5,7 @@
     </div>
     <div class="showBox" v-show="content" ref="search">
       <ul>
-        <li class="item border-bottom" v-for="(value,key) in list" :key="key">{{value.name}}</li>
+        <li class="item border-bottom" v-for="(value,key) in list" :key="key" @click="cityChange(value.name)">{{value.name}}</li>
         <li class="item border-bottom" v-show="nodata">没有相关数据</li>  <!-- 没有匹配数据的时候显示这句话（即list里面没有数据） -->
       </ul>
     </div>
@@ -31,6 +31,12 @@ import BScroll from "better-scroll"
         return !this.list.length
       }
     },
+    methods: {
+      cityChange(city) {
+        this.$store.dispatch("changeCity", city);
+        this.$router.push("/")
+      }
+    },
     watch: {      //监听到输入内容发生变化时的操作
       content() {
         if (this.timer) {
@@ -50,7 +56,7 @@ import BScroll from "better-scroll"
       }
     },
     mounted() {
-      this.scroll = new BScroll(this.$refs.search)  //为搜索出来的区域设置滑动效果
+      this.scroll = new BScroll(this.$refs.search,{click: true})  //为搜索出来的区域设置滑动效果
     }
   }
 </script>

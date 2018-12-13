@@ -8,7 +8,7 @@
       <input class="search" type="text" placeholder="输入城市/景点/游玩主题">
     </div>
     <router-link to="/city" tag="div">
-      <div class="header-right">{{this.city}}
+      <div class="header-right">{{this.currentCity}}
         <span class="iconfont choose">&#xe627;</span>
       </div>
     </router-link>
@@ -16,11 +16,15 @@
 </template>
 
 <script>
+import { mapState } from "vuex"
 export default {
   name: "Header",
-  props: {
+  /* props: {
     city: String
-  }
+  } */
+  computed: mapState({     //当有大括号时，mapXXXX写成...mapXXXX
+      currentCity: "city"    //mapState里也可以是一个对象，将state里的city数据映射到该组件计算属性中名为currentCity的数据
+    })   //mapMutations和mapActions要写在methods里
 };
 </script>
 
@@ -50,7 +54,8 @@ export default {
         font-size: .24rem
         margin: 0 0 .15rem .1rem
     .header-right
-      width: 1.24rem
+      min-width: 1.04rem
+      padding: 0 .1rem   /* width设定值时如果城市名太长将把后面的图标挤到下一行，更改为样式可以解决这个问题 */
       float: right
       text-align: center
       color: #fff
