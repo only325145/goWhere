@@ -17,6 +17,7 @@ import Axios from "axios";
 import Search from "./components/Search.vue";
 import List from "./components/List.vue";
 import Alphabet from "./components/Alphabet.vue";
+import { mapState } from 'vuex';
   export default {
     name: "city",
     components: {Search, List, Alphabet},
@@ -45,7 +46,10 @@ import Alphabet from "./components/Alphabet.vue";
     },
     mounted() {
       this.getCityInfor();
-    }
+    },
+    /* activated() {
+      console.log("cc");
+    } */
   }
 </script>
 
