@@ -2,14 +2,14 @@
   <div class="recommend">
     <div class="title">热门推荐</div>
     <ul>
-      <li class="content border-bottom" v-for="(value) in list" :key="value.id">
+      <router-link tag="li" to="/detail"  class="content border-bottom" v-for="(value) in list" :key="value.id">
         <img class="contentImg" :src="value.imgUrl"/>
         <div class="contentText">
           <p class="textTitle">{{value.textTitle}}</p>
           <p class="text">{{value.text}}</p>
           <input class="butt" type="button" value="查看详情"/>
         </div>
-      </li>
+      </router-link>
     </ul>
   </div>
 </template>
