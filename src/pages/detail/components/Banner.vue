@@ -1,8 +1,9 @@
 <template>
-  <div class="picBanner">
-    <router-link to="/showimg">
+  <div class="picBanner" >
+    <!-- <router-link to="/showimg">
       <img class="bannerImg" :src="this.bannerImg" />
-    </router-link>
+    </router-link> -->
+    <img class="bannerImg" :src="this.bannerImg" @click="show"/>
     <div class="imgInfor">
       <div class="imgTitle">{{this.sightName}}</div>
       <div class="imgNumber">
@@ -16,6 +17,11 @@
 <script>
   export default {
     name: "banner",
+    methods: {
+      show() {
+        this.$emit("haveclick")  //点击图片显示图片详情，触发haveclick事件，在Detail.vue中将show改为true
+      }
+    },
     props: {
       sightName: String,
       bannerImg: String

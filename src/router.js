@@ -21,15 +21,15 @@ export default new Router({
       component: City,
     },
     {
-      path: "/detail",
+      path: "/detail/:id",
       name: "detail",
       component: Detail
     },
-    {
+    /* {
       path: "/showimg",
       name: "showimg",
       component: ShowImg
-    }
+    } */
   ],
   scrollBehavior(to, from, savedPosition) {
     return { x: 0, y: 0 }

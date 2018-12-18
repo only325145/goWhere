@@ -1,24 +1,16 @@
 <template>
-  <div class="showimg">
+  <div class="showimg" v-show="show">
     <div class="imgHeader">
-      <router-link to="/detail">
+      <!-- <router-link to="/detail">
         <span class="iconfont back">&#xe749;</span>
-      </router-link>
+      </router-link> -->
+      <span class="iconfont back" @click="hide">&#xe749;</span>
       <div class="imgTitle">景区图片</div>
     </div>
     <div class="imgList">
       <div class="bannerImg" v-for="(value,key) in gallaryImgs" :key=key>
         <img class="pic" :src="value" />  <!-- 属性里面使用数据采用 :src的方式 -->
       </div>
-      <!-- <div class="bannerImg">
-        <img class="pic" src="http://img1.qunarzz.com/sight/p0/201401/17/72e8ef351fc2129b8e1911fc9d8a6fc3.jpg_350x240_b33f4023.jpg"/>
-      </div>
-      <div class="bannerImg">
-        <img class="pic" src="http://img1.qunarzz.com/sight/p0/201401/17/849db06904ffe8c7997a2ba85f78672f.jpg_350x240_c73295d7.jpg"/>
-      </div>
-      <div class="bannerImg">
-        <img class="pic" src="http://img1.qunarzz.com/sight/p0/201401/17/3162227fc2c70b05292d7c89259983e3.jpg_350x240_00d77f81.jpg"/>
-      </div> -->
     </div>
   </div>
 </template>
@@ -29,9 +21,12 @@ import Axios from "axios";
     name: "showimg",
     data(){
       return{
-      gallaryImgs: []
+        gallaryImgs: [],
       }
-    } ,
+    },
+    props: {
+      show: Boolean
+    },
     methods: {
       getImgInfor() {
         Axios.get("/detail.json").then(this.getImgInforSucc);
@@ -42,6 +37,9 @@ import Axios from "axios";
           const data = res.data;
           this.gallaryImgs = data.gallaryImgs;
         }
+      },
+      hide() {
+        this.$emit("change",this.show)    //当点击imgList页面的返回键时提交一个change事件，在Detail.vue中当本组件侦测到此事件时将show改为false
       }
     },
     mounted() {
@@ -54,8 +52,10 @@ import Axios from "axios";
   @import "../../../assets/styles/mixins.styl" 
   .showimg
     position: absolute   /* 设置为relative背景色将只会比图片区域多一点，不会是整个页面。设置为absolute背景色铺满整个画面 */
-    width: 100%
-    height: 100%
+    top: 0 
+    bottom: 0
+    left: 0
+    right: 0
     background-color: #f5f5f5
     .imgHeader
       position: fixed
