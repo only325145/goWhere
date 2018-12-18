@@ -1,0 +1,30 @@
+{
+  "ret": true,
+  "data": {
+    "sightName": "武隆天坑地缝景区(AAAA景区)",
+    "bannerImg": "http://img1.qunarzz.com/sight/p0/1505/be/be4802e10f3b3107.water.jpg_600x330_9eb9410c.jpg",
+    "gallaryImgs": [
+      "http://img1.qunarzz.com/sight/p0/1505/be/be4802e10f3b3107.water.jpg_600x330_9eb9410c.jpg",
+      "http://img1.qunarzz.com/sight/p0/201401/17/72e8ef351fc2129b8e1911fc9d8a6fc3.jpg_350x240_b33f4023.jpg",
+      "http://img1.qunarzz.com/sight/p0/201401/17/849db06904ffe8c7997a2ba85f78672f.jpg_350x240_c73295d7.jpg",
+      "http://img1.qunarzz.com/sight/p0/201401/17/3162227fc2c70b05292d7c89259983e3.jpg_350x240_00d77f81.jpg"
+    ],
+    "categoryList": [{
+        "title": "成人票",
+        "children": [{
+          "title": "成人三馆联票",
+          "children": [{
+            "title": "成人三馆联票 - 某一连锁店销售"
+          }]
+        },{
+          "title": "成人五馆联票"
+        }]
+      }, {
+        "title": "学生票"
+      }, {
+        "title": "儿童票"
+      }, {
+        "title": "特惠票"
+      }]
+  }
+}

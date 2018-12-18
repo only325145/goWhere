@@ -1,10 +1,10 @@
 <template>
   <div class="picBanner">
     <router-link to="/showimg">
-      <img class="bannerImg" src="http://img1.qunarzz.com/sight/p0/1505/be/be4802e10f3b3107.water.jpg_600x330_9eb9410c.jpg"/>
+      <img class="bannerImg" :src="this.bannerImg" />
     </router-link>
     <div class="imgInfor">
-      <div class="imgTitle">武隆天坑地缝国家地质公园(AAAAA景区)</div>
+      <div class="imgTitle">{{this.sightName}}</div>
       <div class="imgNumber">
         <span class="iconfont">&#xe640;</span>
         <span>4</span>
@@ -15,7 +15,11 @@
 
 <script>
   export default {
-    name: "banner"
+    name: "banner",
+    props: {
+      sightName: String,
+      bannerImg: String
+    }
   }
 </script>
 

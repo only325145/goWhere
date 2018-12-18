@@ -7,10 +7,10 @@
       <div class="imgTitle">景区图片</div>
     </div>
     <div class="imgList">
-      <div class="bannerImg">
-        <img class="pic" src="http://img1.qunarzz.com/sight/p0/1505/be/be4802e10f3b3107.water.jpg_600x330_9eb9410c.jpg"/>
+      <div class="bannerImg" v-for="(value,key) in gallaryImgs" :key=key>
+        <img class="pic" :src="value" />  <!-- 属性里面使用数据采用 :src的方式 -->
       </div>
-      <div class="bannerImg">
+      <!-- <div class="bannerImg">
         <img class="pic" src="http://img1.qunarzz.com/sight/p0/201401/17/72e8ef351fc2129b8e1911fc9d8a6fc3.jpg_350x240_b33f4023.jpg"/>
       </div>
       <div class="bannerImg">
@@ -18,22 +18,42 @@
       </div>
       <div class="bannerImg">
         <img class="pic" src="http://img1.qunarzz.com/sight/p0/201401/17/3162227fc2c70b05292d7c89259983e3.jpg_350x240_00d77f81.jpg"/>
-      </div>
-  
+      </div> -->
     </div>
   </div>
 </template>
 
 <script>
+import Axios from "axios";
   export default {
-    name: "showimg"
+    name: "showimg",
+    data(){
+      return{
+      gallaryImgs: []
+      }
+    } ,
+    methods: {
+      getImgInfor() {
+        Axios.get("/detail.json").then(this.getImgInforSucc);
+      },
+      getImgInforSucc(res) {
+        res = res.data;
+        if(res.ret && res.data) {
+          const data = res.data;
+          this.gallaryImgs = data.gallaryImgs;
+        }
+      }
+    },
+    mounted() {
+      this.getImgInfor()
+    }
   }
 </script>
 
 <style lang="stylus" scoped>
-  @import "../../../assets/styles/mixins.styl"
+  @import "../../../assets/styles/mixins.styl" 
   .showimg
-    position: absolute   /* 设置为relateve背景色将只会比图片区域多一点，不会是整个页面。设置为absolute背景色铺满整个画面 */
+    position: absolute   /* 设置为relative背景色将只会比图片区域多一点，不会是整个页面。设置为absolute背景色铺满整个画面 */
     width: 100%
     height: 100%
     background-color: #f5f5f5
@@ -69,12 +89,11 @@
       zoom: 1
       overflow: hidden
       .bannerImg
-        width: 50%
+        width: 50%    /* 对图片容器设置宽度50%，以此确保图片的宽度 */
         float: left
         padding-right: .05rem
         margin-bottom: .1rem
         box-sizing: border-box
         .pic
           width: 100%
-          vertical-align: middle
 </style>
