@@ -1,7 +1,7 @@
 <template>
   <ul class="list">
     <li class="item" v-for="value in letters" :key="value" 
-      @click="leftMach" @touchstart="handleTouchStart" @touchmove="handleTouchMove" @touchend="handleTouchEnd" :ref="value"
+      @click="leftMach" @touchstart.prevent="handleTouchStart" @touchmove="handleTouchMove" @touchend="handleTouchEnd" :ref="value"
     >{{value}}</li>
   </ul>
 </template>

@@ -8,7 +8,7 @@
       <div class="imgTitle">{{this.sightName}}</div>
       <div class="imgNumber">
         <span class="iconfont">&#xe640;</span>
-        <span>4</span>
+        <span>{{gallaryImgs.length}}</span>
       </div>
     </div>
   </div>
@@ -24,7 +24,8 @@
     },
     props: {
       sightName: String,
-      bannerImg: String
+      bannerImg: String,
+      gallaryImgs: Array
     }
   }
 </script>

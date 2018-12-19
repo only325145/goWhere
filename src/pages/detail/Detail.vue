@@ -1,6 +1,6 @@
 <template>
   <div>
-    <Banner :sightName="sightName" :bannerImg="bannerImg"  @haveclick="imgShow"></Banner>
+    <Banner :sightName="sightName" :bannerImg="bannerImg" :gallaryImgs="gallaryImgs" @haveclick="imgShow"></Banner>
     <Header></Header>
     <div class="content">
       <List :list="categoryList"></List>
@@ -26,6 +26,7 @@ import Axios from "axios";
         sightName: "",
         bannerImg: "",
         categoryList: [],
+        gallaryImgs: [],
         show: false
       }
     },
@@ -40,6 +41,7 @@ import Axios from "axios";
           this.sightName = data.sightName;
           this.bannerImg = data.bannerImg;
           this.categoryList = data.categoryList;
+          this.gallaryImgs = data.gallaryImgs
         }
       },
       imgShow() {
